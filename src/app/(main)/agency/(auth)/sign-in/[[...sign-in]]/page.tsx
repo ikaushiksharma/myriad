@@ -4,6 +4,6 @@ import React from "react";
 type Props = {};
 
 const Page = (props: Props) => {
-  return <SignIn></SignIn>;
+  return <SignIn />;
 };
 export default Page;
