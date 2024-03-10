@@ -10,22 +10,13 @@ import { createMedia } from "@/queries/media";
 import { saveActivityLogsNotification } from "@/queries/notifications";
 
 import { useModal } from "@/hooks/use-modal";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import FileUpload from "../common/FileUpload";
 
-import {
-  UploadMediaValidator,
-  type UploadMediaSchema,
-} from "@/lib/validators/upload-media";
+import { UploadMediaValidator, type UploadMediaSchema } from "@/lib/validators/upload-media";
 
 interface UploadMediaFormProps {
   subAccountId: string;
@@ -58,7 +49,7 @@ const UploadMediaForm: React.FC<UploadMediaFormProps> = ({ subAccountId }) => {
       toast.success("Success", {
         description: "Uploaded media file",
       });
-      
+
       router.refresh();
     } catch (error) {
       toast.error("Failed", {
@@ -73,9 +64,7 @@ const UploadMediaForm: React.FC<UploadMediaFormProps> = ({ subAccountId }) => {
     <Card>
       <CardHeader>
         <CardTitle>Media Information</CardTitle>
-        <CardDescription>
-          Please enter the details for your file
-        </CardDescription>
+        <CardDescription>Please enter the details for your file</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -101,21 +90,12 @@ const UploadMediaForm: React.FC<UploadMediaFormProps> = ({ subAccountId }) => {
                 <FormItem className="flex-1">
                   <FormLabel>Media file</FormLabel>
                   <FormControl>
-                    <FileUpload
-                      value={field.value}
-                      onChange={field.onChange}
-                      endpoint="media"
-                    />
+                    <FileUpload value={field.value} onChange={field.onChange} endpoint="media" />
                   </FormControl>
                 </FormItem>
               )}
             />
-            <Button
-              isLoading={isSubmitting}
-              disabled={isSubmitting}
-              type="submit"
-              className="mt-4"
-            >
+            <Button isLoading={isSubmitting} disabled={isSubmitting} type="submit" className="mt-4">
               Submit
             </Button>
           </form>

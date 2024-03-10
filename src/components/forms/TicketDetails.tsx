@@ -16,39 +16,17 @@ import { upsertTicket } from "@/queries/tickets";
 import { useModal } from "@/hooks/use-modal";
 import type { TicketsWithTags } from "@/lib/types";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Button } from "../ui/button";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "../ui/command";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "../ui/command";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import TagDetails from "./TagDetails";
 
-import {
-  type TicketDetailsSchema,
-  TicketDetailsValidator,
-} from "@/lib/validators/ticket-details";
+import { type TicketDetailsSchema, TicketDetailsValidator } from "@/lib/validators/ticket-details";
 import { cn } from "@/lib/utils";
 
 interface TicketDetailsProps {
@@ -57,11 +35,7 @@ interface TicketDetailsProps {
   getNewTicket: (ticket: TicketsWithTags[0]) => void;
 }
 
-const TicketDetails: React.FC<TicketDetailsProps> = ({
-  getNewTicket,
-  laneId,
-  subAccountId,
-}) => {
+const TicketDetails: React.FC<TicketDetailsProps> = ({ getNewTicket, laneId, subAccountId }) => {
   const router = useRouter();
   const { data: defaultData, setClose } = useModal();
 
@@ -71,7 +45,7 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({
   const [contactId, setContactId] = React.useState<string>("");
   const [search, setSearch] = React.useState<string>("");
   const [assignedTo, setAssignedTo] = React.useState<string>(
-    defaultData?.ticket?.assigned?.id || ""
+    defaultData?.ticket?.assigned?.id || "",
   );
 
   const saveTimerRef = React.useRef<ReturnType<typeof setTimeout>>();
@@ -111,9 +85,7 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({
       }
 
       const fetchContacts = async () => {
-        const response = await searchContacts(
-          defaultData.ticket?.customer?.name!
-        );
+        const response = await searchContacts(defaultData.ticket?.customer?.name!);
         setContactList(response);
       };
 
@@ -137,7 +109,7 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({
               }
             : {}),
         },
-        tags
+        tags,
       );
 
       await saveActivityLogsNotification({
@@ -213,11 +185,7 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({
                       <div className="absolute top-0 left-0 w-8 h-10 grid place-items-center">
                         <span className="text-sm text-zinc-400">$</span>
                       </div>
-                      <Input
-                        placeholder="Ticket value"
-                        className="pl-6"
-                        {...field}
-                      />
+                      <Input placeholder="Ticket value" className="pl-6" {...field} />
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -244,9 +212,7 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({
                           </AvatarFallback>
                         </Avatar>
 
-                        <span className="text-sm text-muted-foreground">
-                          Not Assigned
-                        </span>
+                        <span className="text-sm text-muted-foreground">Not Assigned</span>
                       </div>
                     }
                   />
@@ -260,10 +226,7 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({
                     >
                       <div className="flex items-center gap-2">
                         <Avatar className="w-6 h-6">
-                          <AvatarImage
-                            alt="contact"
-                            src={teamMember.avatarUrl}
-                          />
+                          <AvatarImage alt="contact" src={teamMember.avatarUrl} />
                           <AvatarFallback className="bg-primary text-sm text-white">
                             <User2 className="w-4 h-4" />
                           </AvatarFallback>
@@ -280,11 +243,7 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({
               <FormLabel>Customer</FormLabel>
               <Popover>
                 <PopoverTrigger asChild className="w-full">
-                  <Button
-                    variant="outline"
-                    role="combobox"
-                    className="justify-between"
-                  >
+                  <Button variant="outline" role="combobox" className="justify-between">
                     {contactId
                       ? contactList.find((c) => c.id === contactId)?.name
                       : "Select Customer..."}
@@ -312,13 +271,9 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({
                         }, 1000);
                       }}
                     />
-                    {!!contactList.length && (
-                      <CommandEmpty>No Customer found.</CommandEmpty>
-                    )}
+                    {!!contactList.length && <CommandEmpty>No Customer found.</CommandEmpty>}
                     {!contactList.length && (
-                      <div className="py-6 text-center text-sm">
-                        No Customer found.
-                      </div>
+                      <div className="py-6 text-center text-sm">No Customer found.</div>
                     )}
                     <CommandGroup>
                       {contactList.map((contact) => (
@@ -326,18 +281,14 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({
                           key={contact.id}
                           value={contact.id}
                           onSelect={(currentValue) => {
-                            setContactId(
-                              currentValue === contactId ? "" : currentValue
-                            );
+                            setContactId(currentValue === contactId ? "" : currentValue);
                           }}
                         >
                           {contact.name}
                           <Check
                             className={cn(
                               "ml-auto h-4 w-4",
-                              contactId === contact.id
-                                ? "opacity-100"
-                                : "opacity-0"
+                              contactId === contact.id ? "opacity-100" : "opacity-0",
                             )}
                           />
                         </CommandItem>
