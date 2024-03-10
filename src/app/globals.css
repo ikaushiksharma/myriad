@@ -17,7 +17,7 @@ body {
 *::-webkit-scrollbar {
   width: 0;
 }
-*::-webkit-scrollbar-thumb{
+*::-webkit-scrollbar-thumb {
   width: 0;
 }
 
@@ -119,4 +119,8 @@ body {
     opacity: 1;
     transform: scale(1);
   }
+}
+
+div {
+  /* border: 1px solid red; */
 }

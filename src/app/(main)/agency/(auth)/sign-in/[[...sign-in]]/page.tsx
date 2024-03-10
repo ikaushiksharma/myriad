@@ -1,9 +1,13 @@
-import { SignIn } from "@clerk/nextjs";
 import React from "react";
+import { SignIn } from "@clerk/nextjs";
+import { constructMetadata } from "@/lib/utils";
 
-type Props = {};
-
-const Page = (props: Props) => {
+const Page: React.FC = ({}) => {
   return <SignIn />;
 };
+
 export default Page;
+
+export const metadata = constructMetadata({
+  title: "Sign In - Myriad",
+});
