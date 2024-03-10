@@ -70,8 +70,10 @@ const Navigation: React.FC<NavigationProps> = async ({}) => {
         </ul>
       </nav>
       <aside className="flex items-center gap-2">
-        <Link href="/agency" className={cn(buttonVariants())}>
-          {user ? "Dashboard" : "Get Started"}
+        <Link href="/agency">
+          <button className={cn(buttonVariants())}>
+            {user ? "Dashboard" : "Get Started"}
+          </button>
         </Link>
         {user && <UserButton afterSignOutUrl="/" />}
         <ModeToggle />
