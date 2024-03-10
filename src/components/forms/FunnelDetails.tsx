@@ -161,7 +161,7 @@ const FunnelDetails: React.FC<FunnelDetailsProps> = ({
                   <FormLabel>Favicon</FormLabel>
                   <FormControl>
                     <FileUpload
-                      endpoint="subAccountLogo"
+                      endpoint="subaccountLogo"
                       value={field.value as string}
                       onChange={field.onChange}
                     />
