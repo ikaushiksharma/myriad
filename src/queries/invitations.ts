@@ -48,7 +48,7 @@ export const verifyInvitation = async () => {
 
   if (!user) return redirect("/sign-in");
 
-  const invintationExists = await db.invitation.findUnique({
+  const invitationExists = await db.invitation.findUnique({
     where: {
       email: user.emailAddresses[0].emailAddress,
       status: "PENDING",
@@ -66,12 +66,12 @@ export const verifyInvitation = async () => {
     return isUserExist.agencyId;
   }
 
-  if (invintationExists) {
-    const userDetails = await createTeamUser(invintationExists.agencyId, {
+  if (invitationExists) {
+    const userDetails = await createTeamUser(invitationExists.agencyId, {
       id: user.id,
-      role: invintationExists.role,
-      email: invintationExists.email,
-      agencyId: invintationExists.agencyId,
+      role: invitationExists.role,
+      email: invitationExists.email,
+      agencyId: invitationExists.agencyId,
       avatarUrl: user.imageUrl,
       name: `${user.firstName} ${user.lastName}`,
       createdAt: new Date(),
@@ -79,7 +79,7 @@ export const verifyInvitation = async () => {
     });
 
     await saveActivityLogsNotification({
-      agencyId: invintationExists?.agencyId,
+      agencyId: invitationExists?.agencyId,
       description: "Joined",
       subAccountId: undefined,
     });

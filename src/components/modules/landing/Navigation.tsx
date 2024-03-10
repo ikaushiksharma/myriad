@@ -27,7 +27,7 @@ const Navigation: React.FC<NavigationProps> = async ({}) => {
             <Link
               className={cn(
                 buttonVariants({ variant: "link" }),
-                "text-inherit p-0 underline-offset-8"
+                "text-inherit p-0 underline-offset-8",
               )}
               href="#"
             >
@@ -38,7 +38,7 @@ const Navigation: React.FC<NavigationProps> = async ({}) => {
             <Link
               className={cn(
                 buttonVariants({ variant: "link" }),
-                "text-inherit p-0 underline-offset-8"
+                "text-inherit p-0 underline-offset-8",
               )}
               href="#"
             >
@@ -49,7 +49,7 @@ const Navigation: React.FC<NavigationProps> = async ({}) => {
             <Link
               className={cn(
                 buttonVariants({ variant: "link" }),
-                "text-inherit p-0 underline-offset-8"
+                "text-inherit p-0 underline-offset-8",
               )}
               href="#"
             >
@@ -60,7 +60,7 @@ const Navigation: React.FC<NavigationProps> = async ({}) => {
             <Link
               className={cn(
                 buttonVariants({ variant: "link" }),
-                "text-inherit p-0 underline-offset-8"
+                "text-inherit p-0 underline-offset-8",
               )}
               href="#"
             >

@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { Role } from "@prisma/client";
 
 import { saveActivityLogsNotification } from "@/queries/notifications";
-import { sendInvitation } from "@/queries/invintations";
+import { sendInvitation } from "@/queries/invitations";
 
 import {
   Card,

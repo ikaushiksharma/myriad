@@ -2,7 +2,6 @@
 
 import { db } from "@/lib/db";
 import { Plan, type Agency } from "@prisma/client";
-import { clerkClient } from "@clerk/nextjs";
 import { logger } from "@/lib/utils";
 
 export const getAgencyDetails = async (agencyId: string) => {
@@ -24,10 +23,7 @@ export const getAgencyDetails = async (agencyId: string) => {
   }
 };
 
-export const updateAgencyDetails = async (
-  agencyId: string,
-  agencyDetails: Partial<Agency>
-) => {
+export const updateAgencyDetails = async (agencyId: string, agencyDetails: Partial<Agency>) => {
   const response = await db.agency.update({
     where: {
       id: agencyId,
@@ -102,8 +98,7 @@ export const upsertAgency = async (agency: Agency, price?: Plan) => {
     });
 
     return agencyDetails;
-  } catch (error) {
-  }
+  } catch (error) {}
 };
 
 export const getAgencySubscription = async (agencyId: string) => {
@@ -120,10 +115,7 @@ export const getAgencySubscription = async (agencyId: string) => {
   return agencySubscription;
 };
 
-export const updateAgencyConnectedId = async (
-  agencyId: string,
-  connectAccountId: string
-) => {
+export const updateAgencyConnectedId = async (agencyId: string, connectAccountId: string) => {
   const response = await db.agency.update({
     where: {
       id: agencyId,
