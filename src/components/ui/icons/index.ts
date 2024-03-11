@@ -16,7 +16,7 @@ import Notification from "@/components/ui/icons/notification";
 import Payment from "@/components/ui/icons/payment";
 import Person from "@/components/ui/icons/person";
 import Pipelines from "@/components/ui/icons/pipelines";
-import PluraCategory from "@/components/ui/icons/plura-category";
+import MyriadCategory from "@/components/ui/icons/plura-category";
 import Power from "@/components/ui/icons/power";
 import Receipt from "@/components/ui/icons/receipt";
 import Send from "@/components/ui/icons/send";
@@ -167,7 +167,7 @@ export const icons = [
   {
     value: "category",
     label: "Category",
-    path: PluraCategory,
+    path: MyriadCategory,
   },
   {
     value: "clipboardIcon",

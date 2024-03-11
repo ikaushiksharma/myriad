@@ -22,11 +22,8 @@ interface PaymentSuccessfullPageProps {
 }
 
 // WIP
-const PaymentSuccessfullPage: React.FC<PaymentSuccessfullPageProps> = async ({
-  searchParams,
-}) => {
-  const { payment_intent, payment_intent_client_secret, redirect_status } =
-    searchParams;
+const PaymentSuccessfullPage: React.FC<PaymentSuccessfullPageProps> = async ({ searchParams }) => {
+  const { payment_intent, payment_intent_client_secret, redirect_status } = searchParams;
 
   if (!payment_intent || !payment_intent_client_secret || !redirect_status) {
     redirect("/");
@@ -42,9 +39,7 @@ const PaymentSuccessfullPage: React.FC<PaymentSuccessfullPageProps> = async ({
           <CheckCircle2 className="w-4 h-4" />
           Order successful
         </p>
-        <h1 className="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">
-          Thanks for ordering
-        </h1>
+        <h1 className="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">Thanks for ordering</h1>
       </div>
       <div className="w-full text-left mb-4">
         <h3 className="text-2xl font-semibold mb-2">Order</h3>
@@ -56,9 +51,7 @@ const PaymentSuccessfullPage: React.FC<PaymentSuccessfullPageProps> = async ({
                 <CardHeader className="flex items-center flex-row justify-between gap-6 space-y-0">
                   <h3 className="inline-flex gap-2 items-center font-medium">
                     {product.plan?.nickname}{" "}
-                    <Badge className="bg-emerald-600 text-white text-xs">
-                      PAID
-                    </Badge>
+                    <Badge className="bg-emerald-600 text-white text-xs">PAID</Badge>
                   </h3>
                   <span className="flex-none font-medium">
                     {formatPrice(product.amount / 100)} / month
@@ -67,22 +60,14 @@ const PaymentSuccessfullPage: React.FC<PaymentSuccessfullPageProps> = async ({
                 <CardContent className="flex items-start space-x-6">
                   <div className="flex-auto flex flex-col justify-between">
                     <div className="space-y-1">
-                      <p className="text-sm text-muted-foreground">
-                        {product.description}
-                      </p>
+                      <p className="text-sm text-muted-foreground">{product.description}</p>
                       <p className="text-sm text-muted-foreground">
                         Start Date:{" "}
-                        {format(
-                          new Date(product.period.start * 1000),
-                          "dd/MM/yyyy hh:mm a"
-                        )}
+                        {format(new Date(product.period.start * 1000), "dd/MM/yyyy hh:mm a")}
                       </p>
                       <p className="text-sm text-muted-foreground">
                         End Date:{" "}
-                        {format(
-                          new Date(product.period.end * 1000),
-                          "dd/MM/yyyy hh:mm a"
-                        )}
+                        {format(new Date(product.period.end * 1000), "dd/MM/yyyy hh:mm a")}
                       </p>
                     </div>
                   </div>
@@ -143,17 +128,14 @@ const PaymentSuccessfullPage: React.FC<PaymentSuccessfullPageProps> = async ({
             href={invoice.invoice_pdf}
             className={cn(
               "inline-flex items-center gap-2",
-              buttonVariants({ variant: "secondary" })
+              buttonVariants({ variant: "secondary" }),
             )}
           >
             <Upload className="w-4 h-4" />
             Download PDF
           </Link>
         )}
-        <Link
-          href="/"
-          className={cn("inline-flex items-center gap-2", buttonVariants())}
-        >
+        <Link href="/" className={cn("inline-flex items-center gap-2", buttonVariants())}>
           <ArrowLeft className="w-4 h-4" />
           Back to home
         </Link>
@@ -165,5 +147,5 @@ const PaymentSuccessfullPage: React.FC<PaymentSuccessfullPageProps> = async ({
 export default PaymentSuccessfullPage;
 
 export const metadata = constructMetadata({
-  title: "Payment successfull - Plura",
+  title: "Payment successfull - Myriad",
 });

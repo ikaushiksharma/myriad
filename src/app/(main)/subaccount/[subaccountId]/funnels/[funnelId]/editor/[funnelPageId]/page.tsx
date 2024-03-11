@@ -17,9 +17,7 @@ interface FunnelIdEditorPageProps {
   };
 }
 
-const FunnelIdEditorPage: React.FC<FunnelIdEditorPageProps> = async ({
-  params,
-}) => {
+const FunnelIdEditorPage: React.FC<FunnelIdEditorPageProps> = async ({ params }) => {
   const { funnelId, funnelPageId, subaccountId } = params;
 
   if (!subaccountId) redirect("/subaccount/unauthorized");
@@ -45,13 +43,8 @@ const FunnelIdEditorPage: React.FC<FunnelIdEditorPageProps> = async ({
           funnelPageDetails={funnelPageDetails}
           subAccountId={subaccountId}
         />
-        <FunnelEditor
-          funnelPageId={funnelPageId}
-          funnelPageDetails={funnelPageDetails}
-        />
-        <FunnelEditorSidebar
-          subAccountId={subaccountId}
-        />
+        <FunnelEditor funnelPageId={funnelPageId} funnelPageDetails={funnelPageDetails} />
+        <FunnelEditorSidebar subAccountId={subaccountId} />
       </EditorProvider>
     </div>
   );
@@ -60,5 +53,5 @@ const FunnelIdEditorPage: React.FC<FunnelIdEditorPageProps> = async ({
 export default FunnelIdEditorPage;
 
 export const metadata = constructMetadata({
-  title: "Editor - Plura",
+  title: "Editor - Myriad",
 });
