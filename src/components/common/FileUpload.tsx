@@ -3,12 +3,12 @@ import Image from "next/image";
 import { File, X } from "lucide-react";
 
 import { UploadDropzone } from "@/lib/uploadthing";
-import { ourFileRouter } from "@/app/api/uploadthing/core";
+import { fileRouter } from "@/app/api/uploadthing/core";
 
 import { Button } from "../ui/button";
 
 interface FileUploadProps {
-  endpoint: keyof typeof ourFileRouter;
+  endpoint: keyof typeof fileRouter;
   onChange: (url?: string) => void;
   value: string;
 }
