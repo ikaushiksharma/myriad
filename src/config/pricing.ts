@@ -22,19 +22,19 @@ export const PRICING: PricingItem[] = [
   {
     title: "Unlimited Saas",
     description: "The ultimate agency kit",
-    price: "$199",
+    price: "Rs. 2499",
     duration: "month",
     highlight: "Key features",
     features: ["Everything in Starter and Basic", "Rebilling", "24/7 Support team"],
-    priceId: "price_1OpACCFdfEv15JJw0k6lm8HC",
+    priceId: "price_1OtErdSJoyAQB6yrcYw1PKwc",
   },
   {
     title: "Basic",
     description: "For serious agency owners",
-    price: "$49",
+    price: "Rs. 999",
     duration: "month",
     highlight: "Everything in Starter",
     features: ["Everything in Starter", "Unlimited Sub accounts", "Unlimited Team members"],
-    priceId: "price_1OpACCFdfEv15JJwACWCyqW2",
+    priceId: "price_1OtErdSJoyAQB6yrgaM2LNq1",
   },
 ];

@@ -7,10 +7,7 @@ import { Plan, Prisma } from "@prisma/client";
 import { logger } from "@/lib/utils";
 import { ADD_ONS } from "@/config/add-ons";
 
-export const subscriptionCreate = async (
-  subscription: Stripe.Subscription,
-  customerId: string,
-) => {
+export const subscriptionCreate = async (subscription: Stripe.Subscription, customerId: string) => {
   try {
     const agency = await db.agency.findFirst({
       where: {
@@ -76,7 +73,7 @@ export const getAddOnsProducts = async () => {
 
 export const getPrices = async () => {
   const prices = await StripeInstance.prices.list({
-    product: process.env.NEXT_PUBLIC_PLURA_PRODUCT_ID,
+    product: process.env.NEXT_MYRIAD_PRODUCT_ID,
     active: true,
   });
 
@@ -87,7 +84,7 @@ export const getCharges = async (customerId: string | undefined) => {
   const charges = await StripeInstance.charges.list({
     limit: 50,
     customer: customerId,
-  })
+  });
 
   return charges;
-}
+};

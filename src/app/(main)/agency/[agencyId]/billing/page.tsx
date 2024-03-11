@@ -1,11 +1,7 @@
 import React from "react";
 import { redirect } from "next/navigation";
 
-import {
-  getAddOnsProducts,
-  getCharges,
-  getPrices,
-} from "@/lib/stripe/stripe-actions";
+import { getAddOnsProducts, getCharges, getPrices } from "@/lib/stripe/stripe-actions";
 import { getAgencySubscription } from "@/queries/agency";
 
 import {
@@ -30,9 +26,7 @@ interface AgencyBillingPageProps {
   };
 }
 
-const AgencyBillingPage: React.FC<AgencyBillingPageProps> = async ({
-  params,
-}) => {
+const AgencyBillingPage: React.FC<AgencyBillingPageProps> = async ({ params }) => {
   const { agencyId } = params;
 
   if (!agencyId) redirect("/agency/unauthorized");
@@ -43,7 +37,7 @@ const AgencyBillingPage: React.FC<AgencyBillingPageProps> = async ({
 
   const prices = await getPrices();
   const currentPlanDetails = PRICING.find(
-    (price) => price.priceId === agencySubscription?.subscriptions?.priceId
+    (price) => price.priceId === agencySubscription?.subscriptions?.priceId,
   );
 
   const charges = await getCharges(agencySubscription?.customerId);
@@ -51,20 +45,20 @@ const AgencyBillingPage: React.FC<AgencyBillingPageProps> = async ({
     ...charges.data.map((charge) => ({
       id: charge.id,
       description: charge.description,
-      date: `${new Date(charge.created * 1000).toLocaleTimeString()} ${new Date(charge.created * 1000).toLocaleDateString()}`,
+      date: `${new Date(charge.created * 1000).toLocaleTimeString()} ${new Date(
+        charge.created * 1000,
+      ).toLocaleDateString()}`,
       status: "Paid",
-      amount: `$${charge.amount / 100}`,
+      amount: `Rs. ${charge.amount / 100}`,
     })),
   ];
 
   const amt =
     agencySubscription?.subscriptions?.active && currentPlanDetails?.price
       ? currentPlanDetails?.price
-      : "$0";
+      : "Rs. 0";
 
-  const buttonCta = agencySubscription?.subscriptions?.active
-    ? "Change Plan"
-    : "Get Started";
+  const buttonCta = agencySubscription?.subscriptions?.active ? "Change Plan" : "Get Started";
 
   const description =
     agencySubscription?.subscriptions?.active && currentPlanDetails?.description
@@ -72,13 +66,11 @@ const AgencyBillingPage: React.FC<AgencyBillingPageProps> = async ({
       : "Lets get started! Pick a plan that works best for you!";
 
   const title =
-    agencySubscription?.subscriptions?.active === true &&
-    currentPlanDetails?.title
+    agencySubscription?.subscriptions?.active === true && currentPlanDetails?.title
       ? currentPlanDetails?.title
       : "Starter";
 
-  const starterFeatures =
-    PRICING.find((feature) => feature.title === "Starter")?.features || [];
+  const starterFeatures = PRICING.find((feature) => feature.title === "Starter")?.features || [];
 
   const features =
     agencySubscription?.subscriptions?.active && currentPlanDetails?.features
@@ -117,7 +109,7 @@ const AgencyBillingPage: React.FC<AgencyBillingPageProps> = async ({
                   formatPrice(addOn.default_price?.unit_amount / 100, {
                     maximumFractionDigits: 0,
                   })
-                : "$0"
+                : "Rs. 0"
             }
             buttonCta="Subscribe"
             description={addOn.description as string}
@@ -125,9 +117,7 @@ const AgencyBillingPage: React.FC<AgencyBillingPageProps> = async ({
             highlightTitle={addOn.metadata.HighlightTitle}
             highlightDescription={addOn.metadata.HighlightDescription}
             duration={"/ month"}
-            features={
-              addOn.features.map((feature) => feature.name as string) ?? []
-            }
+            features={addOn.features.map((feature) => feature.name as string) ?? []}
           />
         ))}
       </div>
@@ -147,35 +137,25 @@ const AgencyBillingPage: React.FC<AgencyBillingPageProps> = async ({
             allCharges.map((charge) => (
               <TableRow key={charge.id}>
                 <TableCell>{charge.description}</TableCell>
-                <TableCell>
-                  {format(new Date(charge.date), "dd/MM/yyyy hh:mm a")}
-                </TableCell>
+                <TableCell>{format(new Date(charge.date), "dd/MM/yyyy hh:mm a")}</TableCell>
                 <TableCell>
                   <Badge
                     className={cn({
-                      "bg-emerald-500 text-white":
-                        charge.status.toLowerCase() === "paid",
-                      "bg-orange-600 text-white":
-                        charge.status.toLowerCase() === "pending",
-                      "bg-destructive text-white":
-                        charge.status.toLowerCase() === "failed",
+                      "bg-emerald-500 text-white": charge.status.toLowerCase() === "paid",
+                      "bg-orange-600 text-white": charge.status.toLowerCase() === "pending",
+                      "bg-destructive text-white": charge.status.toLowerCase() === "failed",
                     })}
                   >
                     {charge.status.toUpperCase()}
                   </Badge>
                 </TableCell>
-                <TableCell>{charge.amount + '.00'}</TableCell>
-                <TableCell className="text-muted-foreground">
-                  {charge.id}
-                </TableCell>
+                <TableCell>{charge.amount + ".00"}</TableCell>
+                <TableCell className="text-muted-foreground">{charge.id}</TableCell>
               </TableRow>
             ))}
           {!allCharges.length && (
             <TableRow>
-              <TableCell
-                colSpan={5}
-                className="text-center py-14 text-muted-foreground"
-              >
+              <TableCell colSpan={5} className="text-center py-14 text-muted-foreground">
                 No charges found.
               </TableCell>
             </TableRow>
